@@ -1,3 +1,5 @@
+extern crate wee_alloc;
+
 use full_moon::ast::Ast;
 use serde::Deserialize;
 use thiserror::Error;
@@ -7,6 +9,10 @@ mod context;
 mod formatters;
 mod shape;
 mod verify_ast;
+
+// Use `wee_alloc` as the global allocator.
+#[global_allocator]
+static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 /// The type of indents to use when indenting
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Deserialize)]

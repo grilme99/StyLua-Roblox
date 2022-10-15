@@ -11,6 +11,13 @@ keywords = ["cli", "utility", "lua", "lua51", "formatter"]
 edition = "2018"
 exclude = ["stylua-vscode/**", "tests/**"]
 
+[profile.release]
+strip = true  # Automatically strip symbols from the binary.
+opt-level = "z"  # Optimize for size.
+lto = true
+codegen-units = 1
+panic = "abort"
+
 [lib]
 name = "stylua_lib"
 path = "src/lib.rs"
@@ -51,6 +58,7 @@ strum = { version = "0.24.1", features = ["derive"], optional = true }
 thiserror = "1.0.31"
 threadpool = "1.8.1"
 toml = "0.5.8"
+wee_alloc = "0.4.5"
 
 [dev-dependencies]
 criterion = "0.3.4"
