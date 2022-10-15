@@ -942,7 +942,6 @@ dependencies = [
  "thiserror",
  "threadpool",
  "toml",
- "wasm-bindgen",
 ]
 
 [[package]]

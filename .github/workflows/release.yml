@@ -130,37 +130,6 @@ jobs:
       - name: Publish to cargo
         run: cargo publish --verbose --locked --token ${{ secrets.CARGO_TOKEN }}
 
-  release_npm_wasm:
-    name: Publish wasm to npm
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Install Rust
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-          target: wasm32-unknown-unknown
-          override: true
-          profile: minimal
-
-      - name: Setup Node
-        uses: actions/setup-node@v2
-        with:
-          node-version: "14.x"
-          registry-url: "https://registry.npmjs.org"
-
-      - name: Build WASM
-        run: |
-          chmod u+x ./wasm/build-wasm.sh
-          ./wasm/build-wasm.sh
-
-      - name: Publish to npm
-        working-directory: wasm
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
   release_npm_bin:
     name: Publish binary to npm
     runs-on: ubuntu-latest

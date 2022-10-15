@@ -23,7 +23,6 @@ path = "src/cli/main.rs"
 bench = false
 
 [features]
-default = ["wasm-bindgen"]
 serialize = []
 fromstr = ["strum"]
 luau = ["full_moon/roblox"]
@@ -52,9 +51,6 @@ strum = { version = "0.24.1", features = ["derive"], optional = true }
 thiserror = "1.0.31"
 threadpool = "1.8.1"
 toml = "0.5.8"
-
-[target.'cfg(target_arch = "wasm32")'.dependencies]
-wasm-bindgen = { version = "0.2.81", optional = true }
 
 [dev-dependencies]
 criterion = "0.3.4"
